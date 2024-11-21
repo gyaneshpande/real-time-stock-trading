@@ -22,7 +22,7 @@ public class UserTransaction {
 
     private String stockName;
     private Integer quantity;
-    private Integer price;
+    private Double price;
     private String currency;
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -31,7 +31,7 @@ public class UserTransaction {
 
     public UserTransaction() {
     }
-    public UserTransaction(long id, UserAccount userAccount, String stockName, Integer quantity, Integer price, String currency) {
+    public UserTransaction(long id, UserAccount userAccount, String stockName, Integer quantity, Double price, String currency) {
         this.id = id;
         this.userAccount = userAccount;
         this.stockName = stockName;
@@ -72,11 +72,11 @@ public class UserTransaction {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
