@@ -12,11 +12,13 @@ import java.util.Map;
 public class StockPollingScheduler {
     private final StockPriceService stockPriceService;
     private final StockConfig stockConfig;
+    private final StockPricePublisher stockPricePublisher;
 
     @Autowired
-    public StockPollingScheduler(StockPriceService stockPriceService, StockConfig stockConfig) {
+    public StockPollingScheduler(StockPriceService stockPriceService, StockConfig stockConfig, StockPricePublisher stockPricePublisher) {
         this.stockPriceService = stockPriceService;
         this.stockConfig = stockConfig;
+        this.stockPricePublisher = stockPricePublisher;
     }
 
     @Scheduled(fixedRate = 60000)
@@ -24,7 +26,8 @@ public class StockPollingScheduler {
         Map<String, StockPrice> stockPrices = stockPriceService.getStockPrices(stockConfig.getSymbols());
 
         stockPrices.forEach((symbol, price) -> {
-            System.out.println("Symbol " + symbol + "," + "Current price:" + price.getC());
+            String message = "Symbol " + symbol + ", " + "Current price: " + price.getC() + " at time " + price.getT();
+            stockPricePublisher.sendStockPrice(symbol, price.getC());
         });
 
         // send to kafka
