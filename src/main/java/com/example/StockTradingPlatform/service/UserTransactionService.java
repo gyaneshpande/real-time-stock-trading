@@ -37,12 +37,14 @@ public class UserTransactionService {
         newUserTransaction.setPrice(userTransaction.getPrice());
         newUserTransaction.setCurrency(userTransaction.getCurrency());
         newUserTransaction.setQuantity(userTransaction.getQuantity());
+        newUserTransaction.setStockSymbol(userTransaction.getStockSymbol());
         UserPortfolio userPortfolio = new UserPortfolio();
         userPortfolio.setQuantity(userTransaction.getQuantity());
         userPortfolio.setPrice(userTransaction.getPrice());
         userPortfolio.setStockName(userTransaction.getStockName());
         userPortfolio.setUserAccount(user);
-        userPortfolioService.createUserPortfolio(userPortfolio, user_id); // Create an entry in portfolio
+        userPortfolio.setStockSymbol(userTransaction.getStockSymbol());
+        userPortfolioService.addToUserPortfolio(userPortfolio, user_id); // Create an entry in portfolio
 
         return userTransactionRepository.save(newUserTransaction);
     }

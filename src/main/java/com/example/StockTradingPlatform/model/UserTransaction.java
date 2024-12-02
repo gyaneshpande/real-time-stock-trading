@@ -21,6 +21,8 @@ public class UserTransaction {
     private UserAccount userAccount;
 
     private String stockName;
+
+    private String stockSymbol;
     private Integer quantity;
     private Double price;
     private String currency;
@@ -31,13 +33,14 @@ public class UserTransaction {
 
     public UserTransaction() {
     }
-    public UserTransaction(long id, UserAccount userAccount, String stockName, Integer quantity, Double price, String currency) {
+    public UserTransaction(long id, UserAccount userAccount, String stockName, Integer quantity, Double price, String currency, String stockSymbol) {
         this.id = id;
         this.userAccount = userAccount;
         this.stockName = stockName;
         this.quantity = quantity;
         this.price = price;
         this.currency = currency;
+        this.stockSymbol = stockSymbol;
     }
 
     public UserAccount getUserAccount() {
@@ -86,5 +89,13 @@ public class UserTransaction {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public String getStockSymbol() {
+        return stockSymbol;
+    }
+
+    public void setStockSymbol(String stockSymbol) {
+        this.stockSymbol = stockSymbol;
     }
 }

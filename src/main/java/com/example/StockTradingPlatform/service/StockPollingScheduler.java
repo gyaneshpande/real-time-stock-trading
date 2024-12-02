@@ -30,7 +30,6 @@ public class StockPollingScheduler {
             stockPricePublisher.sendStockPrice(symbol, price.getC());
         });
 
-        // send to kafka
 
     }
 }

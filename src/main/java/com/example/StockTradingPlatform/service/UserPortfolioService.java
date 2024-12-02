@@ -22,7 +22,7 @@ public class UserPortfolioService {
         return userPortfolioRepository.findById(userId);
     }
 
-    public void createUserPortfolio(UserPortfolio userPortfolio, long id) {
+    public void addToUserPortfolio(UserPortfolio userPortfolio, long id) {
         UserAccount userAccount = userRepository.findById(id).orElseThrow();
         UserPortfolio newUserPortfolio = new UserPortfolio();
         newUserPortfolio.setUserAccount(userAccount);
@@ -36,6 +36,11 @@ public class UserPortfolioService {
         Optional<UserPortfolio> userPortfolio = getUserPortfolioByUserId(id);
         return userPortfolio.map(portfolio -> portfolio.getQuantity() * portfolio.getPrice())
                 .orElse(0.0); // Return 0 if no portfolio is present
+    }
+
+    public void removeFromUserPortfolio(UserPortfolio userPortfolio, long id) {
+        UserAccount userAccount = userRepository.findById(id).orElseThrow();
+        userPortfolioRepository.deleteById(userPortfolio.getId());
     }
 
 

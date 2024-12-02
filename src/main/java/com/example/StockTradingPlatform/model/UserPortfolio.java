@@ -17,6 +17,7 @@ public class UserPortfolio {
     private UserAccount userAccount;
 
     private String stockName;
+    private String stockSymbol;
     private Integer quantity;
     private Double price;
     @CreationTimestamp
@@ -62,5 +63,13 @@ public class UserPortfolio {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getStockSymbol() {
+        return stockSymbol;
+    }
+
+    public void setStockSymbol(String stockSymbol) {
+        this.stockSymbol = stockSymbol;
     }
 }
