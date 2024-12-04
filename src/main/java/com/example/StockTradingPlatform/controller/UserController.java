@@ -1,8 +1,11 @@
 package com.example.StockTradingPlatform.controller;
 
 import com.example.StockTradingPlatform.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.StockTradingPlatform.model.UserAccount;
+
+import java.util.List;
 
 
 @RestController
@@ -12,6 +15,12 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserAccount>> getAllUsers() {
+        List<UserAccount> users =  userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/test")
